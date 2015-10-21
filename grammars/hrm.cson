@@ -1,0 +1,62 @@
+'scopeName': 'source.hrm'
+'name': 'Human Resource Machine'
+'fileTypes': [
+  'hrm'
+]
+'firstLineMatch': '^-- HUMAN RESOURCE MACHINE PROGRAM --$'
+'patterns': [
+  {
+    'match': '^-- HUMAN RESOURCE MACHINE PROGRAM --$'
+    'name': 'comment.line.banner.c++'
+  }
+  {
+    'match': '^    (INBOX|OUTBOX)\\b'
+    'captures':
+      '1':
+        'name': 'entity.name.function.preprocessor.c'
+  }
+  {
+    'match': '^    (ADD|COPYFROM|COPYTO|SUB) +([0-9]+)$'
+    'captures':
+      '1':
+        'name': 'entity.name.function.preprocessor.c'
+      '2':
+        'name': 'constant.numeric.c'
+  }
+  {
+    'match': '^    (JUMP|JUMPN|JUMPZ) +([a-z]+)$'
+    'captures':
+      '1':
+        'name': 'entity.name.function.preprocessor.c'
+      '2':
+        'name': 'keyword.control.c'
+  }
+  {
+    'match': '^    (COMMENT) +([0-9]+)$'
+    'captures':
+      '1':
+        'name': 'entity.name.function.preprocessor.c'
+      '2':
+        'name': 'string.quoted.double.include.c'
+  }
+  {
+    'match': '^[a-z]+:'
+    'name': 'keyword.control.c'
+  }
+  {
+    'begin': '^(DEFINE) (COMMENT) ([0-9]+)$'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.keyword.c'
+      '2':
+        'name': 'punctuation.definition.keyword.c'
+      '3':
+        'name': 'string.quoted.double.include.c'
+    'end': ';'
+    'endCaptures':
+      '0':
+        'name': 'constant.language.c'
+
+    'contentName': 'comment.block.c'
+  }
+]
