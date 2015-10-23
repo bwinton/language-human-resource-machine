@@ -6,7 +6,7 @@
 'firstLineMatch': '^-- HUMAN RESOURCE MACHINE PROGRAM --$'
 'patterns': [
   {
-    'match': '^-- HUMAN RESOURCE MACHINE PROGRAM --$'
+    'match': '--.*$'
     'name': 'comment.line.banner.c++'
   }
   {
@@ -16,7 +16,7 @@
         'name': 'entity.name.function.preprocessor.c'
   }
   {
-    'match': '^    (ADD|COPYFROM|COPYTO|SUB) +([0-9]+)$'
+    'match': '^    (ADD|BUMPDN|BUMPUP|COPYFROM|COPYTO|SUB) +([0-9]+)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
@@ -24,7 +24,7 @@
         'name': 'constant.numeric.c'
   }
   {
-    'match': '^    (JUMP|JUMPN|JUMPZ) +([a-z]+)$'
+    'match': '^    (JUMP|JUMPN|JUMPZ) +([a-zA-Z]+)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
@@ -32,7 +32,7 @@
         'name': 'keyword.control.c'
   }
   {
-    'match': '^    (COMMENT) +([0-9]+)$'
+    'match': '^    (COMMENT) +([0-9]+)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
@@ -40,23 +40,28 @@
         'name': 'string.quoted.double.include.c'
   }
   {
-    'match': '^[a-z]+:'
+    'match': '^[a-zA-Z]+:'
     'name': 'keyword.control.c'
   }
   {
-    'begin': '^(DEFINE) (COMMENT) ([0-9]+)$'
+    'begin': '^(DEFINE) ((COMMENT) ([0-9]+)|(LABEL) ([0-9]+))$'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.keyword.c'
-      '2':
-        'name': 'punctuation.definition.keyword.c'
       '3':
+        'name': 'punctuation.definition.keyword.c'
+      '4':
         'name': 'string.quoted.double.include.c'
+      '5':
+        'name': 'punctuation.definition.keyword.c'
+      '6':
+        'name': 'constant.numeric.c'
     'end': ';'
     'endCaptures':
       '0':
-        'name': 'constant.language.c'
+        'name': 'punctuation.definition.keyword.c'
 
     'contentName': 'comment.block.c'
   }
+
 ]
