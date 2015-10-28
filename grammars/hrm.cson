@@ -3,20 +3,20 @@
 'fileTypes': [
   'hrm'
 ]
-'firstLineMatch': '^-- HUMAN RESOURCE MACHINE PROGRAM --$'
+'firstLineMatch': '^ *-- HUMAN RESOURCE MACHINE PROGRAM --'
 'patterns': [
   {
-    'match': '--.*$'
+    'match': ' *--.*'
     'name': 'comment.line.banner.c++'
   }
   {
-    'match': '^    (INBOX|OUTBOX)\\b'
+    'match': '^ *(INBOX|OUTBOX)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
   }
   {
-    'match': '^    (ADD|BUMPDN|BUMPUP|COPYFROM|COPYTO|SUB) +([0-9]+)'
+    'match': '^ *(ADD|BUMPDN|BUMPUP|COPYFROM|COPYTO|SUB) +\\[?([0-9]+)\\]?'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
@@ -24,7 +24,7 @@
         'name': 'constant.numeric.c'
   }
   {
-    'match': '^    (JUMP|JUMPN|JUMPZ) +([a-zA-Z]+)'
+    'match': '^ *(JUMP|JUMPN|JUMPZ) +([a-zA-Z0-9]+)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
@@ -32,29 +32,25 @@
         'name': 'keyword.control.c'
   }
   {
-    'match': '^    (COMMENT) +([0-9]+)'
+    'match': '^ *(COMMENT) +([0-9]+)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
       '2':
-        'name': 'string.quoted.double.include.c'
+        'name': 'constant.numeric.c'
   }
   {
-    'match': '^[a-zA-Z]+:'
+    'match': '^ *[a-zA-Z0-9]+:'
     'name': 'keyword.control.c'
   }
   {
-    'begin': '^(DEFINE) ((COMMENT) ([0-9]+)|(LABEL) ([0-9]+))$'
+    'begin': '^ *(DEFINE) +(COMMENT|LABEL) +([0-9]+)'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.keyword.c'
+      '2':
+        'name': 'punctuation.definition.keyword.c'
       '3':
-        'name': 'punctuation.definition.keyword.c'
-      '4':
-        'name': 'string.quoted.double.include.c'
-      '5':
-        'name': 'punctuation.definition.keyword.c'
-      '6':
         'name': 'constant.numeric.c'
     'end': ';'
     'endCaptures':
@@ -63,5 +59,4 @@
 
     'contentName': 'comment.block.c'
   }
-
 ]
