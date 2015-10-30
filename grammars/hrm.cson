@@ -6,7 +6,7 @@
 'firstLineMatch': '^ *-- HUMAN RESOURCE MACHINE PROGRAM --'
 'patterns': [
   {
-    'match': ' *--.*'
+    'match': '--.*'
     'name': 'comment.line.banner.c++'
   }
   {
@@ -16,7 +16,7 @@
         'name': 'entity.name.function.preprocessor.c'
   }
   {
-    'match': '^ *(ADD|BUMPDN|BUMPUP|COPYFROM|COPYTO|SUB) +\\[?([0-9]+)\\]?'
+    'match': '^ *(ADD|BUMPDN|BUMPUP|COPYFROM|COPYTO|SUB) +(\\[?[0-9]+\\]?)'
     'captures':
       '1':
         'name': 'entity.name.function.preprocessor.c'
@@ -51,7 +51,7 @@
       '2':
         'name': 'punctuation.definition.keyword.c'
       '3':
-        'name': 'constant.numeric.c'
+        'name': 'string'
     'end': ';'
     'endCaptures':
       '0':
